@@ -1,5 +1,5 @@
 {
-  "name": "hardhat-project",
+  "name": "files-validation-system",
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
@@ -27,21 +27,25 @@
     "typescript": "^4.1.2"
   },
   "scripts": {
-    "deploy": "hardhat deploy",
     "frontend": "cd frontend && npm run start",
-    "node": "npx hardhat node --watch",
-    "test": "npx hardhat test"
+    "hardhat:deploy": "hardhat deploy",
+    "hardhat:node": "hardhat node --watch",
+    "hardhat:test": "hardhat test"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/symfoni/hardhat-react-boilerplate.git"
+    "url": "git+https://github.com/DiegoKarabin/files-validation-system.git"
   },
-  "author": "Robertosnap",
+  "authors": [
+    "Diego Karabin",
+    "José Pérez",
+    "Juan Miguel Sanchez Mola"
+  ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/symfoni/hardhat-react-boilerplate/issues"
+    "url": "https://github.com/DiegoKarabin/files-validation-system/issues"
   },
-  "homepage": "https://github.com/symfoni/hardhat-react-boilerplate#readme",
+  "homepage": "https://github.com/DiegoKarabin/files-validation-system#readme",
   "dependencies": {
     "dotenv": "^10.0.0"
   }

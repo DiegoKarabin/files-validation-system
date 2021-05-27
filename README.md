@@ -13,21 +13,25 @@
 
 `cp .env.example .env`
 
-4. Start hardhat `yarn node --watch`
+4. Start hardhat `yarn hardhat:node`
 
 This project supports <b>Binance Smart Chain</b> to develop to `testnet` use this:
 
-`yarn deploy --network bscTestnet`
+`yarn hardhat:deploy --network bscTestnet`
 
 To deploy to `mainnet` use this:
 
-`yarn deploy --network bscMainnet`
+`yarn hardhat:deploy --network bscMainnet`
 
 5. Open up a new terminal
 6. Enter the frontend directory: `cd frontend`
 7. Install dependencies: `npm install`
 8. If you are using a local network. Ensure Metamask RPC is set to `http://localhost:8545` and chainID `31337`.
 9. Start the React app: `yarn start`
+
+The app also can be started from the root folder with:
+
+`yarn frontend`
 
 The frontend should open at http://localhost:3000/
 
