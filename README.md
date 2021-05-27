@@ -1,63 +1,36 @@
-# Get started
+# Files Validations Systems
+#### Developed by the Blockchain Paladins :crossed_swords: :shield:
 
-1. Clone the repo and cd into it `git clone https://github.com/symfoni/hardhat-react-boilerplate.git MyProject && cd MyProject`
+- Diego Karabin
+- José Pérez
+- Juan Miguel Sanchez Mola
+
+## Instructions
+
+1. Clone the repo and cd into it `git clone https://github.com/DiegoKarabin/files-validation-system.git && cd files-validation-system`
 2. Install deps with yarn `yarn` or npm `npm install`
-3. Start hardhat `npx hardhat node --watch`
+3. Copy the `.env.example` file and fill your mnemonic in the MNEMONIC variable to use your metamask accounts when using the local network.
 
-![](https://media.giphy.com/media/9l6z9MzXfHX9gKzbvU/giphy.gif)
+`cp .env.example .env`
 
-```text
-It runs up a Hardhat node, compile contracts, generates typescript interfaces, creates React context and instantiates your contract instances and factories with frontend provider.
-```
+4. Start hardhat `yarn node --watch`
 
-4. Open up a new terminal
-5. Enter the frontend directory: `cd frontend`
-6. Install dependencies: `npm install`
-7. Import seed phrase in Metamask. The default mnemonic currently used by hardhat is `test test test test test test test test test test test junk`
-  1. Please note that you need to sign out from your current Metamask wallet to import a new one. **Instead of logging out**, you can use a new browser profile to do your Ethereum development:
-  3. Click your profile icon in the top right corner of Chrome (right next to the hamburger menu icon)
-  4. Click "Add"
-  5. Give the profile a name and click "Add"
-  6. In this new browser window, install Metamask and import the keyphrase above
-8. Ensure Metamask RPC is set to `http://localhost:8545` and chainID `31337`.
-9. Start the React app: `npm start`
+This project supports <b>Binance Smart Chain</b> to develop to `testnet` use this:
+
+`yarn deploy --network bscTestnet`
+
+To deploy to `mainnet` use this:
+
+`yarn deploy --network bscMainnet`
+
+5. Open up a new terminal
+6. Enter the frontend directory: `cd frontend`
+7. Install dependencies: `npm install`
+8. If you are using a local network. Ensure Metamask RPC is set to `http://localhost:8545` and chainID `31337`.
+9. Start the React app: `yarn start`
 
 The frontend should open at http://localhost:3000/
 
 Because of this default hardhat.config.ts it will first try to connect with an injected provider like Metamask (web3modal package does this).
 
 If nothing found it will try to connect with your hardhat node. On localhost and hardhat nodes it will inject your mnemonic into the frontend so you have a "browser wallet" that can both call and send transactions. NB! Dont ever put a mnemonic with actual value here.
-
-In hardhat.config.ts there is example on how to instruct your hardhat-network to use mnemonic or privatekey.
-
-```ts
-const config: HardhatUserConfig = {
-  react: {
-    providerPriority: ["web3modal", "hardhat"],
-  },
-};
-```
-
-Ensure you are useing RPC to http://localhost:8545.
-
-You may also need to set the chainID to 31337 if you are useing Hardhat blockchain development node.
-
-## Invalid nonce.
-
-```bash
-eth_sendRawTransaction
-  Invalid nonce. Expected X but got X.
-```
-
-Reset your account in Metamask.
-
-# We ❤️ these **Ethereum** projects:
-
-- [Hardhat 👷](https://hardhat.org/)
-- [Hardhat-deploy 🤘](https://hardhat.org/plugins/hardhat-deploy.html)
-- [Typechain 🔌](https://github.com/ethereum-ts/Typechain#readme)
-- [hardhat-typechain 🧙‍♀️](https://hardhat.org/plugins/hardhat-typechain.html)
-- [ethers.js v5 ⺦](https://github.com/ethers-io/ethers.js#readme)
-- [web3modal 💸](https://github.com/Web3Modal/web3modal#web3modal)
-- [ts-morph 🏊‍♂️](https://github.com/dsherret/ts-morph)
-- [@symfoni/hardhat-react 🎻(our own)](https://www.npmjs.com/package/@symfoni/hardhat-react)
