@@ -15,7 +15,6 @@ contract FileValidation is OwnableUpgradeable {
 	struct document {
 		string name;
 		string ipfsAddress;
-		string dataHash;
 		uint startDate;
 		uint endDate;
 		uint storedDate;
@@ -61,11 +60,11 @@ contract FileValidation is OwnableUpgradeable {
 
 	/// @notice Approves a company
 	/// @param _company		Address of the company's owner
-	/// @param _approved	Whether the company is accepted or rejected
-	function approveCompany(address _company, bool _approved) public onlyOwner {
+	function approveCompany(address _company) public onlyOwner {
 		require(keccak256(abi.encodePacked(companyIndex[_company].name)) != keccak256(abi.encodePacked('')), 'This company is invalid!');
 		require(!(companyIndex[_company].accepted), 'This address already has an approved company!');
-		companyIndex[_company].accepted = _approved;
+		companyIndex[_company].accepted = true;
+		approvedCompanies.push(_company);
 	}
 
 	/// @notice Store information about a document on IPFS
@@ -90,7 +89,7 @@ contract FileValidation is OwnableUpgradeable {
 	/// @param  _dataHash	Document Name
 	/// @return Document's info
 	function getDocument(string calldata _dataHash) public view returns(document memory) {
-		require(keccak256(abi.encodePacked(documents[_dataHash].name)) != keccak256(abi.encodePacked('')), "This document does not exist!");
+		//require(keccak256(abi.encodePacked(documents[_dataHash].name)) != keccak256(abi.encodePacked('')), "This document does not exist!");
 		document memory queriedDocument = documents[_dataHash];
 		return queriedDocument;
 	}
