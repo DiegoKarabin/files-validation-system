@@ -76,7 +76,7 @@ contract FileValidation is OwnableUpgradeable {
 	function uploadDocument(string calldata _name, string calldata _ipfsAddress, string calldata _dataHash, uint _startDate, uint _endDate) public {
 		require(keccak256(abi.encodePacked(companyIndex[msg.sender].name)) != keccak256(abi.encodePacked('')), 'This company is invalid!');
 		require(companyIndex[msg.sender].accepted, "This company hasn't been approved!");
-		require(keccak256(abi.encodePacked(documents[_dataHash].name)) == keccak256(abi.encodePacked('')), "This document has already been uploaded!");
+		require(documents[_dataHash].ownerAddress == address(0), "This document has already been uploaded!");
 		document storage newDocument = documents[_dataHash];
 		newDocument.name = _name;
 		newDocument.ipfsAddress = _ipfsAddress;
@@ -89,7 +89,7 @@ contract FileValidation is OwnableUpgradeable {
 	/// @param  _dataHash	Document Name
 	/// @return Document's info
 	function getDocument(string calldata _dataHash) public view returns(document memory) {
-		//require(keccak256(abi.encodePacked(documents[_dataHash].name)) != keccak256(abi.encodePacked('')), "This document does not exist!");
+		require(documents[_dataHash].ownerAddress != address(0), "This document does not exist!");
 		document memory queriedDocument = documents[_dataHash];
 		return queriedDocument;
 	}

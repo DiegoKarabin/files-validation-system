@@ -65,5 +65,27 @@ describe("Files Validation System", function () {
 			);
 			expect((await contract.getDocument('hashhashhashhashhashhashhashhash')).ownerAddress).to.equal(addr1.address);
 		});
+
+		it("Reverts if a non-approved company uploads", async function () {
+			let instanceAsAddress2 = contract.connect(addr2);
+			expect(instanceAsAddress2.uploadDocument(
+				'Test Document 2',
+				'ABCDEFGHIJKLMNOPQRSTUVWXYZ--',
+				'hashhashhashhashhashhashhashhash2',
+				Number(new Date()),
+				Number(new Date()) + 10000
+			)).to.be.revertedWith("This company hasn't been approved!");
+		});
+
+		it("Reverts if the document already exists", async function () {
+			let instanceAsAddress1 = contract.connect(addr1);
+			expect(instanceAsAddress1.uploadDocument(
+				'Test Document',
+				'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+				'hashhashhashhashhashhashhashhash',
+				Number(new Date()),
+				Number(new Date()) + 10000
+			)).to.be.revertedWith("This document has already been uploaded!");
+		});
 	});
 });
