@@ -5,19 +5,19 @@ var uploadIPFS = require('./upload-ipfs')
 var app = express()
 
 
-
+/*
 app.get('/', async (req,res)=> {
 
         res.sendFile(__dirname + '/index.html');
 
-});
+});*/
 
 const PATH = 'uploads/';
 var URLl;
         
 app.post('/file', upload.single('doc'), async function(req,res,next){
     try{
-        console.log(req.file);
+        //console.log(req.file);
         const file = req.file;
         if(!file){
             res.status(400).send({status:false,
@@ -51,14 +51,7 @@ app.post('/file', upload.single('doc'), async function(req,res,next){
         res.status(500).send(err);
     }
 })
-app.get('/', async (req,res)=> {
 
-    const result = URLl;
-    
-    res.send(
-        {message:result});
-
-});
 
 const port = 8545;
 app.listen(port,()=>

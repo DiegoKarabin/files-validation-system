@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { FileValidationContext } from "./../hardhat/SymfoniContext";
 import md5 from 'md5';
-
+var uploadIPFS = require('./upload-ipfs')
 interface Props { }
 
 export const FileValidator: React.FC<Props> = () => {
@@ -34,15 +34,14 @@ export const FileValidator: React.FC<Props> = () => {
 			<input className='form-control' value={documentTitle} onChange={e => setDocumentTitle(e.target.value)} />
 		</div>
 		<div className='col-12 text-start'>
-			<label className='form-control-label'> File </label>
-			<input className='form-control' type='file' onChange={e => {
-				if (e && e.target && e.target.files)
-				{
-					let fileReader = new FileReader();
-					fileReader.onload = (ev:any) => setDocumentData(ev.target.result);
-					fileReader.readAsArrayBuffer(e.target.files[0]);
-				}
-			}} />
+				<form target = "_blank" action="/file" method="POST" enctype='multipart/form-data'>
+				<fieldset>
+					<legend>Upload file </legend>
+					<input type="file" name = "doc"></input>
+					<button type ="submit">Upload PDF</button>
+				</fieldset>
+			</form>
+			<iframe  name="iframe_a" height="300px" width="100%" title="Iframe Example"></iframe>
 		</div>
 		<div className='col-12 text-start'>
 			<label className='form-control-label'> IPFS Address </label>
