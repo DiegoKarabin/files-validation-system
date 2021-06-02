@@ -13,7 +13,8 @@ app.get('/', async (req,res)=> {
 });
 
 const PATH = 'uploads/';
-
+var URLl;
+        
 app.post('/file', upload.single('doc'), async function(req,res,next){
     try{
         console.log(req.file);
@@ -24,21 +25,40 @@ app.post('/file', upload.single('doc'), async function(req,res,next){
 
         }else{
             //send response
-           
+            var HASH = await uploadIPFS(PATH + req.file.filename);
+            console.log(HASH);
             res.send({status: true,
-                message: 'File is uploaded.',
+                message: "https://ipfs.io/ipfs/"+HASH,
                 data:{
                     name: file.originalname,
                     mimetype: file.mimetype,
                     size: file.size
                 }
-            }); var HASH = await uploadIPFS(PATH + req.file.filename);
-            console.log(HASH);
+            });
+          
+                //The variable to be returned
+                
+                //The variables containing the respective IDs
+                
+        
+                //Forming the variable to return    
+                URLl="https://ipfs.io/ipfs/"+HASH;
+            
+        
+             
         }
     }catch(err){
         res.status(500).send(err);
     }
 })
+app.get('/', async (req,res)=> {
+
+    const result = URLl;
+    
+    res.send(
+        {message:result});
+
+});
 
 const port = 8888;
 app.listen(port,()=>

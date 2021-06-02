@@ -9,7 +9,7 @@ async function uploadIPFS(PATH){
         console.log(data.text);
     })
     var result = [];
-  
+    var hash;
     try{
         var node = await ipfsClient({host:'ipfs.infura.io', port: '5001',protocol:'https'});//setting where to put it
         for await (var file of await node.add({
@@ -20,7 +20,8 @@ async function uploadIPFS(PATH){
         }
         
         
-        console.log(result[0].hash);
+        hash = result[0].hash;
+        console.log(hash);
 
         //example to download ==== https://ipfs.io/ipfs/+ "result[0].hash"
       //https://ipfs.io/ipfs/QmXqNyw6pvfAWVKbpdYM6vET1RWX7Se86DBWn2nhG1Z4T5
@@ -29,6 +30,7 @@ async function uploadIPFS(PATH){
         console.log(err);
         return false;
     }
-    return true;
+    return hash;
+   
 }
 module.exports = uploadIPFS;

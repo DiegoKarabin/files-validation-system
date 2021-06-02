@@ -6,12 +6,31 @@
 </head>
 <body>
     <br><br>
-    <form action="/file" method="POST" enctype='multipart/form-data'>
+    <form target = "_blank" action="/file" method="POST" enctype='multipart/form-data'>
      <fieldset>
          <legend>Upload file </legend>
          <input type="file" name = "doc">
          <button type ="submit">Upload</button>
      </fieldset>
     </form>
+    <iframe  name="iframe_a" height="300px" width="100%" title="Iframe Example"></iframe>
+
+<p><a id='a' href="http://localhost:8888/file" onclick="RedirectURL();return false;" target="iframe_a">Document PDF</a></p>
+<script type="text/javascript" >
+function RedirectURL(){
+fetch('http://localhost:8888/').then(data => loadHTMLTable(data));
+}
+function loadHTMLTable(data){
+  
+    console.log(data );
+   
+ 
+    document.querySelector('#a').addEventListener('click', (e) => {
+     e.target.href = data;
+    
+    });
+}
+</script>
+<p>When the target attribute of a link matches the name of an iframe, the link will open in the iframe.</p>
 </body>
 </html>
